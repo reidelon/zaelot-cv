@@ -159,12 +159,12 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 GRAPHQL_JWT = {
-    # 'JWT_PAYLOAD_HANDLER': 'cv.utils.jwt_payload',
+    'JWT_PAYLOAD_HANDLER': 'cv.utils.jwt_payload',
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
     'JWT_VERIFY_EXPIRATION': True,
     # 'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
     'JWT_EXPIRATION_DELTA': timedelta(minutes=5),
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
-    'JWT_SECRET_KEY': os.environ.get("SECRET_KEY"),
+    'JWT_SECRET_KEY': "Q3d5ymmEjNBw37XQdL4xeRVvDCxgvqFrisALR4bng-0",
     'JWT_ALGORITHM': 'HS256',
 }
