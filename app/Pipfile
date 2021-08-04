@@ -9,6 +9,8 @@ verify_ssl = true
 install = "*"
 django = "==3.2.6"
 psycopg2-binary = "==2.8.6"
+django-graphql-jwt = "*"
+graphene-django = "*"
 
 [requires]
 python_version = "3.9"

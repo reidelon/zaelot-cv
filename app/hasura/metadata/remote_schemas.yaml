@@ -1,1 +1,5 @@
-[]
+- name: graphql
+  definition:
+    url: http://cv-web:8000/graphql
+    timeout_seconds: 60
+  comment: ""

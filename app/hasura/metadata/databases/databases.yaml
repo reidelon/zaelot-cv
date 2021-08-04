@@ -1,8 +1,9 @@
-- name: cv_db
+- name: cv
   kind: postgres
   configuration:
     connection_info:
-      database_url: postgres://postgres:postgres@cv-db:5432/postgres
+      database_url:
+        from_env: HASURA_GRAPHQL_DATABASE_URL
       isolation_level: read-committed
       use_prepared_statements: false
-  tables: "!include cv_db/tables/tables.yaml"
+  tables: "!include cv/tables/tables.yaml"
