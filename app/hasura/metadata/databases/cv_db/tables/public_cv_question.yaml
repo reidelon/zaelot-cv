@@ -1,0 +1,11 @@
+table:
+  name: cv_question
+  schema: public
+array_relationships:
+- name: cv_choices
+  using:
+    foreign_key_constraint_on:
+      column: question_id
+      table:
+        name: cv_choice
+        schema: public

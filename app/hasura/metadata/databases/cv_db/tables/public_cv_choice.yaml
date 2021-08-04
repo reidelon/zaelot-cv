@@ -1,0 +1,7 @@
+table:
+  name: cv_choice
+  schema: public
+object_relationships:
+- name: cv_question
+  using:
+    foreign_key_constraint_on: question_id

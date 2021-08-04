@@ -1,0 +1,3 @@
+table:
+  name: cv_customuser
+  schema: public

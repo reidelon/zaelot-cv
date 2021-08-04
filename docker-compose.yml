@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  cv:
+    build: ./app
+    command: bash -c 'python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000'
+    # entrypoint: ['/usr/src/app/entrypoint.sh']
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8009:8000
+    env_file:
+      - ./app/.env.dev
+    depends_on:
+      - cv-db
+
+  cv-db:  
+    build:
+      context: ./app/db
+      dockerfile: Dockerfile
+    expose:
+      - 5432
+    env_file:
+      - ./app/.env.dev
+
+  graphql-engine:
+    image: hasura/graphql-engine:latest.cli-migrations-v3
+    volumes:
+      - ./app/hasura/migrations:/hasura-migrations
+      - ./app/hasura/metadata:/hasura-metadata
+    ports:
+    - "8080:8080"
+    depends_on:
+    - "cv-db"
+    restart: always
+    environment:
+      ## postgres database to store Hasura metadata
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@cv-db:5432/postgres
+      ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
+      PG_DATABASE_URL: postgres://postgres:postgres@cv-db:5432/postgres
+      ## enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      ## enable debugging mode. It is recommended to disable this in production
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: public
