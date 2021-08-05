@@ -38,6 +38,7 @@ docker-compose run --service-ports cv-web
  [Django](https://www.djangoproject.com/) - The web framework used.<br />
  [Hasura](https://hasura.io/) - The graphql server used.<br />
  [PostgreSQL](https://www.postgresql.org/) - Database Engine used.<br />
- [Docker](https://www.docker.com/) - Container technology used.
+ [Docker](https://www.docker.com/) - Container technology used.<br />
+ [Graphene-Django](https://docs.graphene-python.org/projects/django/en/latest/) - Tool to implement a GraphQL API in Python
 
 
