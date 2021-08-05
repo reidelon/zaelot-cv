@@ -8,6 +8,54 @@ cd zaelot-cv
 
 docker-compose up --build
 ```
+### graphql server(Hasura)
+ http://localhost:8080/v1/graphql
+
+### Django server
+ http://localhost:8009/
+ 
+
+## Important Mutations
+
+### get auth token
+```
+mutation tokenAuth {
+  tokenAuth(password: "", username: "") {
+    payload
+    refreshExpiresIn
+    token
+  }
+}
+```
+
+### verify token
+```
+mutation verifyToken {
+  verifyToken(token: "") {
+    payload
+  }
+}
+```
+
+### refresh token
+```
+mutation refreshToken {
+  refreshToken(token: "") {
+    payload
+    refreshExpiresIn
+    token
+  }
+}
+```
+
+### Every time you make any change in hasura, you need to export the metadata`(need to have Hasura CLI installed, see Technology section)` and commit it, like this:
+```bash
+cd app/hasura
+```
+```bash
+hasura md export
+```
+# -Every table change need to be done using django migrations and track the table from hasura console.
 
 ## Useful commands
 
@@ -37,6 +85,7 @@ docker-compose run --service-ports cv-web
 ## Technology
  [Django](https://www.djangoproject.com/) - The web framework used.<br />
  [Hasura](https://hasura.io/) - The graphql server used.<br />
+ [Hasura CLI](https://hasura.io/docs/latest/graphql/core/hasura-cli/index.html)- Command line tool which is the primary mode of managing Hasura projects.<br />
  [PostgreSQL](https://www.postgresql.org/) - Database Engine used.<br />
  [Docker](https://www.docker.com/) - Container technology used.<br />
  [Graphene-Django](https://docs.graphene-python.org/projects/django/en/latest/) - Tool to implement a GraphQL API in Python
