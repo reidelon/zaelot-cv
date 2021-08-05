@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from graphene_django import DjangoObjectType
 from graphql_jwt.decorators import login_required
 
-User1 = get_user_model()
+CustomUser = get_user_model()
 
 
 class Mutation(graphene.ObjectType):
@@ -15,15 +15,21 @@ class Mutation(graphene.ObjectType):
 
 class User(DjangoObjectType):
     class Meta:
-        model = User1
+        model = CustomUser
 
 
 class Query(graphene.ObjectType):
     users = graphene.List(User)
+    whoami = graphene.Field(User)
 
     @login_required
     def resolve_users(self, info):
-        return User1.objects.all()
+        return CustomUser.objects.all()
+
+    # @login_required
+    def resolve_whoami(self, info):
+        return CustomUser.objects.all()[0]
+
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
 
