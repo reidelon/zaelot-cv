@@ -20,15 +20,19 @@ class User(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     users = graphene.List(User)
-    whoami = graphene.Field(User)
+    getoneadmin = graphene.Field(User)
+    getoneuser = graphene.Field(User)
 
     @login_required
     def resolve_users(self, info):
         return CustomUser.objects.all()
 
     # @login_required
-    def resolve_whoami(self, info):
-        return CustomUser.objects.all()[0]
+    def resolve_getoneadmin(self, info):
+        return CustomUser.objects.filter(is_superuser=True)[0]
+
+    def resolve_getoneuser(self, info):
+        return CustomUser.objects.filter(role='user')[0]
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
