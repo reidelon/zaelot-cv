@@ -1,1 +1,1 @@
-CREATE DATABASE cv_dev;
+CREATE DATABASE cv_db;
