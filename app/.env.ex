@@ -1,0 +1,27 @@
+DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 0.0.0.0 [::1]
+# database access credentials
+ENGINE=django.db.backends.postgresql
+DB_NAME=cv_db
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+DB_HOST=cv-db
+DB_PORT=5432
+
+#APP_PORT='8009:8000'
+DEBUG=1
+SECRET_KEY=foo
+
+#superuser details
+DJANGO_SU_NAME=admin
+DJANGO_SU_EMAIL=admin12@gmail.com
+DJANGO_SU_PASSWORD=adminadmin
+
+HASURA_GRAPHQL_DEV_MODE=true
+#HASURA_PORT="8080:8080"
+HASURA_GRAPHQL_ADMIN_SECRET=myadminsecretkey
+HASURA_GRAPHQL_UNAUTHORIZED_ROLE=public
+HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS=true
+HASURA_GRAPHQL_JWT_SECRET={ "type": "HS256", "key": "Q3d5ymmEjNBw37XQdL4xeRVvDCxgvqFrisALR4bng-0" }
+HASURA_GRAPHQL_METADATA_DATABASE_URL=postgres://postgres:postgres@cv-db:5432/cv_db
+HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgres@cv-db:5432/cv_db
+HASURA_GRAPHQL_ENABLE_CONSOLE=true
