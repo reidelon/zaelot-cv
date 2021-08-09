@@ -3,7 +3,7 @@
 
 echo "Initializing postgres db..."
 
-while ! nc -z cv-db $DB_PORT; do
+while ! nc -z cv-db 5432; do
   sleep 0.1
 done
 

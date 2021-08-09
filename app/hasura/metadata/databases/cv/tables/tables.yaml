@@ -1,3 +1,2 @@
-- "!include public_cv_choice.yaml"
-- "!include public_cv_customuser.yaml"
-- "!include public_cv_question.yaml"
+- "!include public_custom_user.yaml"
+- "!include public_role.yaml"

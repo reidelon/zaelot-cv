@@ -12,7 +12,8 @@ def jwt_payload(user, context=None):
     payload['sub_email'] = user.email
     payload['exp'] = jwt_expires
     payload['https://hasura.io/jwt/claims'] = {}
-    payload['https://hasura.io/jwt/claims']['x-hasura-allowed-roles'] = [user.role]
-    payload['https://hasura.io/jwt/claims']['x-hasura-default-role'] = user.role
+    role = user.role.name if user.role is not None else ''
+    payload['https://hasura.io/jwt/claims']['x-hasura-allowed-roles'] = [role]
+    payload['https://hasura.io/jwt/claims']['x-hasura-default-role'] = role
     payload['https://hasura.io/jwt/claims']['x-hasura-user-id'] = str(user.id)
     return payload

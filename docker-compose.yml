@@ -3,7 +3,8 @@ version: '3.7'
 services:
   cv-web:
     build: ./app
-    command: bash -c 'python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000'
+    command: bash -c 'python manage.py migrate --noinput &&
+                      python manage.py runserver 0.0.0.0:8000'
     volumes:
       - ./app/:/usr/src/app/
     restart: always

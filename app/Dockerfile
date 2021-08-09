@@ -18,5 +18,4 @@ RUN apt-get update && apt-get install -y pipenv netcat gcc postgresql \
 COPY . $MICRO_SERVICE
 RUN pipenv install --system --deploy
 
-# COPY ./entrypoint.sh $MICRO_SERVICE
 CMD ["/bin/bash", "/usr/src/app/entrypoint.sh"]

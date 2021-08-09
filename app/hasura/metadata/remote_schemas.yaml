@@ -2,4 +2,5 @@
   definition:
     url: http://cv-web:8000/graphql
     timeout_seconds: 60
+    forward_client_headers: true
   comment: ""
